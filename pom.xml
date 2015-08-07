@@ -28,14 +28,14 @@
           <images>
             <image>
               <alias>db2pg</alias>
-              <name>postgres:9</name>
+              <name>wnameless/oracle-xe-11g</name>
               <run>
                 <wait>
-                  <log>database system is ready to accept connections</log>
-                  <time>20000</time>
+                  <log>^\W?$</log>
+                  <time>60000</time>
                 </wait>
                 <log>
-                  <color>red</color> <prefix>DB2</prefix>
+                  <color>red</color> <prefix>ORA</prefix>
                 </log>
               </run>
               <watch>
