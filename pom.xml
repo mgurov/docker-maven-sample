@@ -26,6 +26,23 @@
           <logDate>default</logDate>
           <autoPull>true</autoPull>
           <images>
+            <image>
+              <alias>db2pg</alias>
+              <name>postgres:9</name>
+              <run>
+                <wait>
+                  <log>database system is ready to accept connections</log>
+                  <time>20000</time>
+                </wait>
+                <log>
+                  <color>red</color> <prefix>DB2</prefix>
+                </log>
+              </run>
+              <watch>
+                <mode>none</mode>
+              </watch>
+            </image>
+
             <!-- Microservice image holding the FAT-Jar with embedded tomcat -->
             <image>
               <!-- Alias name which can used for linking containers during runtime -->
@@ -84,6 +101,7 @@
                 <mode>none</mode>
               </watch>
             </image>
+
           </images>
         </configuration>
 
