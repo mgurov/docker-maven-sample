@@ -26,22 +26,6 @@
           <logDate>default</logDate>
           <autoPull>true</autoPull>
           <images>
-            <image>
-              <alias>db2pg</alias>
-              <name>wnameless/oracle-xe-11g</name>
-              <run>
-                <wait>
-                  <log>^\W?$</log>
-                  <time>60000</time>
-                </wait>
-                <log>
-                  <color>red</color> <prefix>ORA</prefix>
-                </log>
-              </run>
-              <watch>
-                <mode>none</mode>
-              </watch>
-            </image>
 
             <!-- Microservice image holding the FAT-Jar with embedded tomcat -->
             <image>
@@ -95,6 +79,23 @@
                 </wait>
                 <log>
                   <color>yellow</color> <prefix>DB</prefix>
+                </log>
+              </run>
+              <watch>
+                <mode>none</mode>
+              </watch>
+            </image>
+
+            <image>
+              <alias>db2pg</alias>
+              <name>wnameless/oracle-xe-11g</name>
+              <run>
+                <wait>
+                  <log>^\W?$</log>
+                  <time>60000</time>
+                </wait>
+                <log>
+                  <color>red</color> <prefix>ORA</prefix>
                 </log>
               </run>
               <watch>
