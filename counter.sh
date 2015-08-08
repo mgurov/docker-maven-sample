@@ -1,12 +1,23 @@
 #!/bin/bash -eu
 
-stop=${1:--1}
+stop=-1
+while getopts "s:" opt; do
+    case $opt in
+    s)
+      stop=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG"
+      ;;
+  esac
+done
+
 cnt=1
 while [ $cnt -gt 0 ]; do
     echo "Count: $cnt."
     if [ $cnt -eq $stop ]; then
         cnt=0
-        echo "exiting"
+        echo "stopping"
     else
         let cnt=$cnt+1
     fi
