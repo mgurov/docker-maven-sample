@@ -1,6 +1,7 @@
 .PHONY: distr
 build:
 	docker build -t local/t .
+	docker build -t local/cnt counter.img
 mvn_cache:
 	- docker run --name mvn_cache maven:3.3.3-jdk-8 /bin/true
 run: build
