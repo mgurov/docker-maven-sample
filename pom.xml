@@ -30,6 +30,7 @@
             <image>
               <name>local/cnt</name>
               <run>
+                <cmd>-s 5</cmd>
                 <wait>
                   <log>Count: 5.</log>
                   <time>20000</time>
