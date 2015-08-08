@@ -1,13 +1,14 @@
 #!/bin/bash -eu
 
 stop=-1
-while getopts "s:" opt; do
+while getopts ":s:" opt; do
     case $opt in
     s)
       stop=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG"
+      exit -1
       ;;
   esac
 done
