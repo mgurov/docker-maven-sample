@@ -27,80 +27,30 @@
           <autoPull>true</autoPull>
           <images>
 
-            <!-- Microservice image holding the FAT-Jar with embedded tomcat -->
             <image>
-              <!-- Alias name which can used for linking containers during runtime -->
-              <alias>service</alias>
-              <name>jolokia/${project.artifactId}:${project.version}</name>
-
-              <!-- Building the image -->
-              <build>
-                <from>java:8u40</from>
-                <assembly>
-                  <descriptor>assembly.xml</descriptor>
-                </assembly>
-                <ports>
-                  <port>8080</port>
-                </ports>
-                <cmd>
-                  <shell>
-                    java -Djava.security.egd=file:/dev/./urandom -jar /maven/docker-sample.jar
-                  </shell>
-                </cmd>
-              </build>
-
-              <!-- Running the container -->
-              <run>
-                <ports>
-                  <port>tomcat.port:8080</port>
-                </ports>
-                <wait>
-                  <!-- ${docker.host.address} is set automatically by the plugin -->
-                  <url>http://${docker.host.address}:${tomcat.port}/access</url>
-                  <time>10000</time>
-                </wait>
-                <links>
-                  <link>db</link>
-                </links>
-                <log>
-                  <color>cyan</color> <prefix>TC</prefix>
-                </log>
-              </run>
-            </image>
-
-            <!-- PostgresSQL Image is used 'as-is' and is linked into the service image -->
-            <image>
-              <alias>db</alias>
-              <name>postgres:9</name>
+              <name>local/cnt</name>
               <run>
                 <wait>
-                  <log>database system is ready to accept connections</log>
+                  <log>Count: 5.</log>
                   <time>20000</time>
                 </wait>
                 <log>
-                  <color>yellow</color> <prefix>DB</prefix>
+                  <color>yellow</color> <prefix>one</prefix>
                 </log>
               </run>
-              <watch>
-                <mode>none</mode>
-              </watch>
             </image>
 
             <image>
-              <alias>db2pg</alias>
-              <name>wnameless/oracle-xe-11g</name>
+              <name>local/cnt</name>
               <run>
                 <wait>
-                  <log>^\W?$</log>
+                  <log>Count: 5.</log>
                   <time>60000</time>
                 </wait>
                 <log>
-                  <color>red</color> <prefix>ORA</prefix>
+                  <color>red</color> <prefix>two</prefix>
                 </log>
               </run>
-              <watch>
-                <mode>none</mode>
-              </watch>
             </image>
 
           </images>
