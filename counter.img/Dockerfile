@@ -1,4 +1,4 @@
-FROM docker pull debian:jessie
+FROM debian:jessie
 
 ADD counter.sh /usr/bin/counter.sh
 
