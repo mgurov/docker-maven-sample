@@ -1,4 +1,4 @@
-FROM maven:3.3.3-jdk-8
+FROM docker pull debian:jessie
 
 ADD counter.sh /usr/bin/counter.sh
 

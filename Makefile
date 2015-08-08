@@ -6,6 +6,6 @@ build: build_cnt
 mvn_cache:
 	- docker run --name mvn_cache maven:3.3.3-jdk-8 /bin/true
 run: build
-	docker run -it --rm --volumes-from mvn_cache -v /var/run/docker.sock:/var/run/docker.sock local/t mvn verify
+	docker run -it --rm --volumes-from mvn_cache -v /var/run/docker.sock:/var/run/docker.sock local/t mvn docker:start docker:stop
 all: mvn_cache run
 
