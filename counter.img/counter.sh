@@ -2,13 +2,17 @@
 
 shutup=-1
 exit=-1
-while getopts ":s:e:" opt; do
+cat=-1
+while getopts ":s:e:c:" opt; do
     case $opt in
     s)
       shutup=$OPTARG
       ;;
     e)
       exit=$OPTARG
+      ;;
+    c)
+      cat=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG"
@@ -19,10 +23,12 @@ done
 
 cnt=1
 while [ $cnt -gt 0 ]; do
-    echo "Count: $cnt."
+    if [ $shutup -eq -1 ] || [ $shutup -ge $cnt ]; then
+        echo "Count: $cnt."
+    fi
     if [ $cnt -eq $exit ]; then
         exit 0
-    elif [ $cnt -eq $shutup ] ; then
+    elif [ $cnt -eq $cat ] ; then
         cat
     else
         let cnt=$cnt+1
