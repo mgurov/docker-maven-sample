@@ -1,10 +1,14 @@
 #!/bin/bash -eu
 
-stop=-1
-while getopts ":s:" opt; do
+shutup=-1
+exit=-1
+while getopts ":s:e:" opt; do
     case $opt in
     s)
-      stop=$OPTARG
+      shutup=$OPTARG
+      ;;
+    e)
+      exit=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG"
@@ -16,8 +20,10 @@ done
 cnt=1
 while [ $cnt -gt 0 ]; do
     echo "Count: $cnt."
-    if [ $cnt -eq $stop ]; then
-        cnt=0
+    if [ $cnt -eq $exit ]; then
+        exit 0
+    elif [ $cnt -eq $shutup ] ; then
+        cat
     else
         let cnt=$cnt+1
     fi
